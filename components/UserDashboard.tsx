@@ -151,7 +151,7 @@ const UserDashboard: React.FC = () => {
   return (
     <div className="bg-black min-h-screen text-white">
       <Navbar />
-      <div className="pt-24 p-6">
+      <div className="pt-24 px-4 sm:px-6 pb-12">
         <div className="max-w-4xl mx-auto">
           {/* Back Button */}
           <div className="mb-6">
@@ -165,7 +165,7 @@ const UserDashboard: React.FC = () => {
           </div>
 
           <div className="mb-8">
-            <h1 className="text-4xl font-bold mb-2">User Dashboard</h1>
+            <h1 className="text-3xl sm:text-4xl font-bold mb-2">User Dashboard</h1>
             <p className="text-gray-400">Manage your HondaUnit profile</p>
           </div>
 
@@ -295,42 +295,47 @@ const UserDashboard: React.FC = () => {
               
               <div className="space-y-4">
                 {profile.socialLinks?.map((link, index) => (
-                  <div key={index} className="flex gap-4">
-                    <input
-                      type="text"
-                      value={link.platform}
-                      onChange={(e) => handleSocialLinkChange(index, 'platform', e.target.value)}
-                      className="flex-1 px-4 py-3 bg-zinc-800 border border-white/10 rounded-lg focus:border-honda-red focus:outline-none transition-colors"
-                      placeholder="Platform (e.g., YouTube, Facebook)"
-                    />
-                    <input
-                      type="text"
-                      value={link.url || ''}
-                      onChange={(e) => handleSocialLinkChange(index, 'url', e.target.value)}
-                      className="flex-1 px-4 py-3 bg-zinc-800 border border-white/10 rounded-lg focus:border-honda-red focus:outline-none transition-colors"
-                      placeholder="URL"
-                    />
-                    <input
-                      type="text"
-                      value={link.handle || ''}
-                      onChange={(e) => handleSocialLinkChange(index, 'handle', e.target.value)}
-                      className="flex-1 px-4 py-3 bg-zinc-800 border border-white/10 rounded-lg focus:border-honda-red focus:outline-none transition-colors"
-                      placeholder="Handle"
-                    />
-                    <button
-                      type="button"
-                      onClick={() => removeSocialLink(index)}
-                      className="p-3 bg-red-900/50 border border-red-500/30 rounded-lg hover:bg-red-900/70 transition-colors"
-                    >
-                      <Trash2 size={16} className="text-red-400" />
-                    </button>
+                  <div key={index} className="flex flex-col gap-3 md:gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
+                      <input
+                        type="text"
+                        value={link.platform}
+                        onChange={(e) => handleSocialLinkChange(index, 'platform', e.target.value)}
+                        className="w-full px-4 py-3 bg-zinc-800 border border-white/10 rounded-lg focus:border-honda-red focus:outline-none transition-colors"
+                        placeholder="Platform (e.g., YouTube, Facebook)"
+                      />
+                      <input
+                        type="text"
+                        value={link.url || ''}
+                        onChange={(e) => handleSocialLinkChange(index, 'url', e.target.value)}
+                        className="w-full px-4 py-3 bg-zinc-800 border border-white/10 rounded-lg focus:border-honda-red focus:outline-none transition-colors"
+                        placeholder="URL"
+                      />
+                      <input
+                        type="text"
+                        value={link.handle || ''}
+                        onChange={(e) => handleSocialLinkChange(index, 'handle', e.target.value)}
+                        className="w-full px-4 py-3 bg-zinc-800 border border-white/10 rounded-lg focus:border-honda-red focus:outline-none transition-colors"
+                        placeholder="Handle"
+                      />
+                    </div>
+                    <div className="flex flex-col sm:flex-row sm:justify-end">
+                      <button
+                        type="button"
+                        onClick={() => removeSocialLink(index)}
+                        className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-3 bg-red-900/50 border border-red-500/30 rounded-lg hover:bg-red-900/70 transition-colors"
+                      >
+                        <Trash2 size={16} className="text-red-400" />
+                        <span className="text-sm">Remove</span>
+                      </button>
+                    </div>
                   </div>
                 ))}
                 
                 <button
                   type="button"
                   onClick={addSocialLink}
-                  className="flex items-center gap-2 px-4 py-3 bg-zinc-800 border border-white/10 rounded-lg hover:bg-zinc-700 transition-colors"
+                  className="flex w-full sm:w-auto items-center justify-center gap-2 px-4 py-3 bg-zinc-800 border border-white/10 rounded-lg hover:bg-zinc-700 transition-colors"
                 >
                   <Plus size={16} />
                   Add Social Link
@@ -339,11 +344,11 @@ const UserDashboard: React.FC = () => {
             </div>
 
             {/* Submit Button */}
-            <div className="flex justify-end gap-4">
+            <div className="flex flex-col sm:flex-row sm:justify-end gap-3 sm:gap-4">
               <button
                 type="submit"
                 disabled={isLoading || !isDirty}
-                className="flex items-center gap-2 px-8 py-3 bg-honda-red text-white rounded-lg hover:bg-red-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex w-full sm:w-auto items-center justify-center gap-2 px-6 sm:px-8 py-3 bg-honda-red text-white rounded-lg hover:bg-red-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isLoading ? (
                   'Saving...'

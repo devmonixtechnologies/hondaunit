@@ -1,6 +1,6 @@
 import type { ContactFormPayload } from '../lib/emailTemplates';
+import { API_BASE_URL } from './config';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api';
 const CONTACT_FUNCTION_ENDPOINT = `${API_BASE_URL}/contact`;
 
 export const submitContactForm = async (payload: ContactFormPayload) => {

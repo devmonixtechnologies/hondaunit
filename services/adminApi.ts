@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://localhost:5000/api/admin';
+import { ADMIN_API_BASE_URL } from './config';
 
 export interface AdminOverview {
   users: {
@@ -97,7 +97,7 @@ class AdminApiService {
   }
 
   async getOverview(): Promise<AdminOverview> {
-    const response = await fetch(`${API_BASE_URL}/overview`, {
+    const response = await fetch(`${ADMIN_API_BASE_URL}/overview`, {
       credentials: 'include',
       headers: this.getAuthHeaders()
     });
@@ -119,7 +119,7 @@ class AdminApiService {
     if (search) params.append('search', search);
     if (category) params.append('category', category);
 
-    const response = await fetch(`${API_BASE_URL}/gallery?${params}`, {
+    const response = await fetch(`${ADMIN_API_BASE_URL}/gallery?${params}`, {
       credentials: 'include',
       headers: this.getAuthHeaders()
     });
@@ -136,7 +136,7 @@ class AdminApiService {
   }
 
   async createGalleryItem(item: Omit<GalleryItem, '_id' | 'createdBy' | 'createdAt' | 'updatedAt'>): Promise<GalleryItem> {
-    const response = await fetch(`${API_BASE_URL}/gallery`, {
+    const response = await fetch(`${ADMIN_API_BASE_URL}/gallery`, {
       method: 'POST',
       credentials: 'include',
       headers: this.getAuthHeaders(),
@@ -153,7 +153,7 @@ class AdminApiService {
   }
 
   async updateGalleryItem(id: string, item: Partial<Omit<GalleryItem, '_id' | 'createdBy' | 'createdAt' | 'updatedAt'>>): Promise<GalleryItem> {
-    const response = await fetch(`${API_BASE_URL}/gallery/${id}`, {
+    const response = await fetch(`${ADMIN_API_BASE_URL}/gallery/${id}`, {
       method: 'PUT',
       credentials: 'include',
       headers: this.getAuthHeaders(),
@@ -170,7 +170,7 @@ class AdminApiService {
   }
 
   async deleteGalleryItem(id: string): Promise<void> {
-    const response = await fetch(`${API_BASE_URL}/gallery/${id}`, {
+    const response = await fetch(`${ADMIN_API_BASE_URL}/gallery/${id}`, {
       method: 'DELETE',
       credentials: 'include',
       headers: this.getAuthHeaders()
@@ -190,7 +190,7 @@ class AdminApiService {
 
     if (search) params.append('search', search);
 
-    const response = await fetch(`${API_BASE_URL}/events?${params}`, {
+    const response = await fetch(`${ADMIN_API_BASE_URL}/events?${params}`, {
       credentials: 'include',
       headers: this.getAuthHeaders()
     });
@@ -207,7 +207,7 @@ class AdminApiService {
   }
 
   async createEvent(event: Omit<Event, '_id' | 'createdBy' | 'createdAt' | 'updatedAt'>): Promise<Event> {
-    const response = await fetch(`${API_BASE_URL}/events`, {
+    const response = await fetch(`${ADMIN_API_BASE_URL}/events`, {
       method: 'POST',
       credentials: 'include',
       headers: this.getAuthHeaders(),
@@ -224,7 +224,7 @@ class AdminApiService {
   }
 
   async updateEvent(id: string, event: Partial<Omit<Event, '_id' | 'createdBy' | 'createdAt' | 'updatedAt'>>): Promise<Event> {
-    const response = await fetch(`${API_BASE_URL}/events/${id}`, {
+    const response = await fetch(`${ADMIN_API_BASE_URL}/events/${id}`, {
       method: 'PUT',
       credentials: 'include',
       headers: this.getAuthHeaders(),
@@ -241,7 +241,7 @@ class AdminApiService {
   }
 
   async deleteEvent(id: string): Promise<void> {
-    const response = await fetch(`${API_BASE_URL}/events/${id}`, {
+    const response = await fetch(`${ADMIN_API_BASE_URL}/events/${id}`, {
       method: 'DELETE',
       credentials: 'include',
       headers: this.getAuthHeaders()
@@ -262,7 +262,7 @@ class AdminApiService {
     if (status) params.append('status', status);
     if (search) params.append('search', search);
 
-    const response = await fetch(`${API_BASE_URL}/contact?${params}`, {
+    const response = await fetch(`${ADMIN_API_BASE_URL}/contact?${params}`, {
       credentials: 'include',
       headers: this.getAuthHeaders()
     });
@@ -279,7 +279,7 @@ class AdminApiService {
   }
 
   async updateContactMessage(id: string, message: Partial<ContactMessage>): Promise<ContactMessage> {
-    const response = await fetch(`${API_BASE_URL}/contact/${id}`, {
+    const response = await fetch(`${ADMIN_API_BASE_URL}/contact/${id}`, {
       method: 'PUT',
       credentials: 'include',
       headers: this.getAuthHeaders(),
@@ -296,7 +296,7 @@ class AdminApiService {
   }
 
   async deleteContactMessage(id: string): Promise<void> {
-    const response = await fetch(`${API_BASE_URL}/contact/${id}`, {
+    const response = await fetch(`${ADMIN_API_BASE_URL}/contact/${id}`, {
       method: 'DELETE',
       credentials: 'include',
       headers: this.getAuthHeaders()
@@ -313,7 +313,7 @@ class AdminApiService {
     if (search) params.append('search', search);
     const query = params.toString();
 
-    const response = await fetch(`${API_BASE_URL}/branches${query ? `?${query}` : ''}`, {
+    const response = await fetch(`${ADMIN_API_BASE_URL}/branches${query ? `?${query}` : ''}`, {
       credentials: 'include',
       headers: this.getAuthHeaders()
     });
@@ -329,7 +329,7 @@ class AdminApiService {
   async createBranch(
     branch: Omit<AdminBranch, '_id' | 'createdAt' | 'updatedAt'>
   ): Promise<AdminBranch> {
-    const response = await fetch(`${API_BASE_URL}/branches`, {
+    const response = await fetch(`${ADMIN_API_BASE_URL}/branches`, {
       method: 'POST',
       credentials: 'include',
       headers: this.getAuthHeaders(),
@@ -349,7 +349,7 @@ class AdminApiService {
     id: string,
     branch: Partial<Omit<AdminBranch, '_id' | 'createdAt' | 'updatedAt'>>
   ): Promise<AdminBranch> {
-    const response = await fetch(`${API_BASE_URL}/branches/${id}`, {
+    const response = await fetch(`${ADMIN_API_BASE_URL}/branches/${id}`, {
       method: 'PUT',
       credentials: 'include',
       headers: this.getAuthHeaders(),
@@ -366,7 +366,7 @@ class AdminApiService {
   }
 
   async deleteBranch(id: string): Promise<void> {
-    const response = await fetch(`${API_BASE_URL}/branches/${id}`, {
+    const response = await fetch(`${ADMIN_API_BASE_URL}/branches/${id}`, {
       method: 'DELETE',
       credentials: 'include',
       headers: this.getAuthHeaders()
