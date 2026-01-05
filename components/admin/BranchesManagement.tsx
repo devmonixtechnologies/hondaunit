@@ -140,8 +140,8 @@ const BranchesManagement: React.FC = () => {
 
   return (
     <>
-      <div className="space-y-6">
-        <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+      <div>
+        <div className="mb-6 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <div>
             <h2 className="text-2xl font-bold mb-2">Global Branches</h2>
             <p className="text-gray-400">
@@ -149,8 +149,8 @@ const BranchesManagement: React.FC = () => {
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-end">
-            <div className="relative w-full sm:w-auto">
+          <div className="flex flex-col sm:flex-row gap-3 sm:items-center">
+            <div className="relative">
               <input
                 type="text"
                 value={search}
@@ -164,20 +164,18 @@ const BranchesManagement: React.FC = () => {
               />
             </div>
 
-            <div className="flex">
-              <button
-                onClick={() => openModal()}
-                className="flex w-full sm:w-auto items-center justify-center gap-2 px-4 py-2 bg-honda-red text-white rounded-lg hover:bg-red-600 transition-colors"
-              >
-                <Plus size={16} />
-                Add Branch
-              </button>
-            </div>
+            <button
+              onClick={() => openModal()}
+              className="flex items-center gap-2 px-4 py-2 bg-honda-red text-white rounded-lg hover:bg-red-600 transition-colors"
+            >
+              <Plus size={16} />
+              Add Branch
+            </button>
           </div>
         </div>
 
         {isLoading ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
             {Array.from({ length: 6 }).map((_, index) => (
               <div
                 key={index}
@@ -191,7 +189,7 @@ const BranchesManagement: React.FC = () => {
             ))}
           </div>
         ) : filteredBranches.length === 0 ? (
-          <div className="text-center py-16 border border-dashed border-white/10 rounded-xl bg-zinc-900/30 px-4">
+          <div className="text-center py-16 border border-dashed border-white/10 rounded-xl bg-zinc-900/30">
             <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-white/5 mb-4">
               <Target size={24} className="text-gray-400" />
             </div>
@@ -201,7 +199,7 @@ const BranchesManagement: React.FC = () => {
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
             {filteredBranches.map((branch) => (
               <div
                 key={branch._id}
@@ -252,8 +250,8 @@ const BranchesManagement: React.FC = () => {
 
       {showModal && (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-zinc-900 rounded-2xl w-full max-w-3xl border border-white/10 flex flex-col max-h-[90vh]">
-            <div className="p-4 sm:p-6 border-b border-white/10 flex flex-wrap gap-4 items-center justify-between">
+          <div className="bg-zinc-900 rounded-2xl w-full max-w-3xl border border-white/10 overflow-hidden">
+            <div className="p-6 border-b border-white/10 flex items-center justify-between">
               <div>
                 <p className="text-sm uppercase tracking-widest text-gray-500">
                   {editingBranch ? 'Update Branch' : 'Create Branch'}
@@ -270,8 +268,8 @@ const BranchesManagement: React.FC = () => {
               </button>
             </div>
 
-            <form onSubmit={handleSubmit} className="p-4 sm:p-6 space-y-6 overflow-y-auto">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+            <form onSubmit={handleSubmit} className="p-6 space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-sm uppercase tracking-widest text-gray-500">
                     Branch Name
@@ -346,7 +344,7 @@ const BranchesManagement: React.FC = () => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-sm uppercase tracking-widest text-gray-500">
                     Latitude
@@ -397,7 +395,7 @@ const BranchesManagement: React.FC = () => {
                 }
               />
 
-              <div className="flex flex-col sm:flex-row sm:justify-end gap-3 pt-4 border-t border-white/10">
+              <div className="flex justify-end gap-3 pt-4 border-t border-white/10">
                 <button
                   type="button"
                   onClick={closeModal}
@@ -508,7 +506,7 @@ const LocationPicker: React.FC<LocationPickerProps> = ({ lat, lng, onSelect }) =
       </div>
       <div
         ref={containerRef}
-        className="w-full h-56 sm:h-64 rounded-xl border border-white/10 overflow-hidden"
+        className="w-full h-64 rounded-xl border border-white/10 overflow-hidden"
       />
     </div>
   );

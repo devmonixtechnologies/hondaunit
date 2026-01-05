@@ -1,0 +1,20 @@
+export const toSafeUser = user => ({
+  id: user._id,
+  name: user.name,
+  email: user.email,
+  role: user.role,
+  title: user.title,
+  bio: user.bio,
+  location: user.location,
+  avatarUrl: user.avatarUrl,
+  coverImage: user.coverImage,
+  description: user.description,
+  age: user.age,
+  instagram: user.instagram,
+  machine: user.machine,
+  socialLinks: user.socialLinks,
+  publicSlug: user.publicSlug,
+  isActive: user.isActive,
+  createdAt: user.createdAt,
+  updatedAt: user.updatedAt
+});
